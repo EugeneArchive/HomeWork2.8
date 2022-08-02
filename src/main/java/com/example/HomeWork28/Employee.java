@@ -56,6 +56,6 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "ФИ: " + surname + " " + name;
+        return "Employee: " + surname + " " + name + ", departmentId= " + departmentId + ", salary= " + salary;
     }
 }

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Collection;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/employee")
@@ -19,7 +19,7 @@ public class EmployeeController {
     }
 
     @GetMapping(path = "/print")
-    public Collection<Employee> printEmployee() {
+    public Map<String, Employee> printEmployee() {
         return employeeService.printEmployee();
 
     }

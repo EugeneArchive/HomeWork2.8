@@ -7,32 +7,32 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/department")
 public class DepartmentController {
     private final DepartmentService departmentService;
-
-
-
     public DepartmentController(DepartmentService departmentService) {
         this.departmentService = departmentService;
     }
+
     @GetMapping(path = "/max-salary")
-    public Optional<Employee> maxSalary(@RequestParam("departmentId") int departmentId) {
+    public Optional<Employee> maxSalary(@RequestParam("departmentId") Integer departmentId) {
         return departmentService.maxSalary(departmentId);
     }
     @GetMapping(path = "/min-salary")
-    public Optional<Employee> minSalary(@RequestParam("departmentId") int departmentId) {
+    public Optional<Employee> minSalary(@RequestParam("departmentId") Integer departmentId) {
         return departmentService.minSalary(departmentId);
     }
-    @GetMapping(path = "/all")
-    public Optional<Employee> departmentEmployees(@RequestParam("departmentId") int departmentId) {
+    @GetMapping(path = "/printByDepartmentId")
+    public List<Employee> departmentEmployees(@RequestParam("departmentId") Integer departmentId) {
         return departmentService.departmentEmployees(departmentId);
     }
     @GetMapping(path = "/all")
-    public Employee allEmployees() {
-        return departmentService.allEmployees();
+    public Map<Integer, String> allEmployees() {
+        return departmentService.printAllDepartmentEmployee();
     }
 }

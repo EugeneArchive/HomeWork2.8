@@ -31,7 +31,7 @@ public class DepartmentController {
     }
 
     @GetMapping(path = "/all")
-    public Object departmentEmployees(@RequestParam(defaultValue = "") Integer departmentId) {
+    public Object departmentEmployees(@RequestParam(name = "departmentId",required=false) Integer departmentId) {
         if (departmentId == null) {
             return departmentService.printAllDepartmentEmployee();
         }

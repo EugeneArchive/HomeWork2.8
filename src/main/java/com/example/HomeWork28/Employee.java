@@ -10,8 +10,8 @@ public class Employee {
     @JsonProperty("firstName")
     private String name;
 
-    private int departmentId;
-    private double salary;
+    private final int departmentId;
+    private final double salary;
 
     public Employee(String surname, String name, int departmentId, double salary) {
         this.surname = surname;

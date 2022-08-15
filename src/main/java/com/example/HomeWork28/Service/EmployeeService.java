@@ -8,8 +8,7 @@ import com.example.HomeWork28.Exception.EmployeeStorageIsFullException;
 import org.springframework.stereotype.Service;
 
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class EmployeeService {
@@ -40,7 +39,7 @@ public class EmployeeService {
     public Employee deleteEmployeeFio(String name, String surname) {
         String s = surname + " " + name;
               if (!EMPLOYEES.containsKey(s)) {
-            throw new EmployeeNotFoundException("Поиск завершен. Данного сотрудника нет в базе данных.");
+            throw new EmployeeNotFoundException();
         }
         return EMPLOYEES.remove(s);
     }
@@ -49,13 +48,16 @@ public class EmployeeService {
     public Employee findEmployee(String surname, String name) {
         String s = surname + " " + name;
         if (EMPLOYEES.containsKey(s)) {
-            throw new EmployeeNotFoundException("Поиск завершен. Данного сотрудника нет в базе данных.");
+            throw new EmployeeNotFoundException();
         }
         return EMPLOYEES.get(s);
     }
 
     public Map<String, Employee> printEmployee() {
         return EMPLOYEES;
+    }
+    public List<Employee> getAll() {
+        return new ArrayList<>(EMPLOYEES.values());
     }
 
 }

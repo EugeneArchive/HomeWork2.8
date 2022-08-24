@@ -12,16 +12,25 @@ import static org.apache.commons.lang3.StringUtils.*;
 @Service
 public class EmployeeService {
     private static final int LIMIT = 10;
-    private final Map<String, Employee> EMPLOYEES;
+    private final Map<String, Employee> EMPLOYEES = new HashMap<>();
+    private final ValidatorService validatorService;
 
-    public EmployeeService() {
-        this.EMPLOYEES = new HashMap<>();
+    public EmployeeService(ValidatorService validatorService) {
+        this.validatorService = validatorService;
+    }
+
+    private String getKey(String name, String surname) {
+        return name + " " + surname;
     }
 
 
-    public Employee addEmployee(String name, String surname, int departmentName, double salary) {
-        checkEmployee(name, surname);
-        Employee employee = new Employee(surname, name, departmentName, salary);
+    public Employee addEmployee(String name,
+                                String surname,
+                                int departmentName,
+                                double salary) {
+        //checkEmployee(name, surname);
+        Employee employee = validatorService.validateEmployee(name, surname,departmentName, salary);
+        String key = getKey(employee.getName(), employee.getSurname());
         if (EMPLOYEES.containsKey(employee.getFullName())) {
             throw new EmployeeAlreadyAddedException("Сотрудник уже есть в базе данных. Добавление невозможно");
         }
@@ -29,14 +38,14 @@ public class EmployeeService {
             throw new DepartmentIllegalNumber("Некоректный номер отдела. Добавление невозможно.");
         }
         if (EMPLOYEES.size() < LIMIT) {
-            EMPLOYEES.put(employee.getFullName(), employee);
+            EMPLOYEES.put(key, employee);
             return employee;
         }
         throw new EmployeeStorageIsFullException("Список сотрудников заполнен. Добавление нового сотрудника невозможно");
     }
 
     public Employee deleteEmployeeFio(String name, String surname) {
-        checkEmployee(name, surname);
+       // checkEmployee(name, surname);
         String s = surname + " " + name;
         if (!EMPLOYEES.containsKey(s)) {
             throw new EmployeeNotFoundException();
@@ -46,7 +55,7 @@ public class EmployeeService {
 
 
     public Employee findEmployee(String name, String surname) {
-        checkEmployee(name, surname);
+        //checkEmployee(name, surname);
         String s = name + " " + surname;
         if (!EMPLOYEES.containsKey(s)) {
             throw new EmployeeNotFoundException();

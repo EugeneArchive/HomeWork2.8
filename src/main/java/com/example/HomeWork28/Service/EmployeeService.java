@@ -28,7 +28,7 @@ public class EmployeeService {
                                 String surname,
                                 int departmentName,
                                 double salary) {
-      //  checkEmployee(name, surname);
+        //checkEmployee(name, surname);
         Employee employee = validatorService.validateEmployee(name, surname,departmentName, salary);
         String key = getKey(employee.getName(), employee.getSurname());
         if (EMPLOYEES.containsKey(employee.getFullName())) {
@@ -45,7 +45,7 @@ public class EmployeeService {
     }
 
     public Employee deleteEmployeeFio(String name, String surname) {
-        checkEmployee(name, surname);
+       // checkEmployee(name, surname);
         String s = surname + " " + name;
         if (!EMPLOYEES.containsKey(s)) {
             throw new EmployeeNotFoundException();
@@ -55,7 +55,7 @@ public class EmployeeService {
 
 
     public Employee findEmployee(String name, String surname) {
-        checkEmployee(name, surname);
+        //checkEmployee(name, surname);
         String s = name + " " + surname;
         if (!EMPLOYEES.containsKey(s)) {
             throw new EmployeeNotFoundException();

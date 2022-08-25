@@ -41,6 +41,6 @@ public class EmployeeController {
     @GetMapping(path = "/find")
     public Employee findEmployee(@RequestParam("firstName") String name,
                                  @RequestParam("lastName") String surname) {
-        return employeeService.findEmployee(surname, name);
+        return employeeService.findEmployee(name, surname);
     }
 }

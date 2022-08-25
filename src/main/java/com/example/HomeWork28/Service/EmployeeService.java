@@ -20,7 +20,7 @@ public class EmployeeService {
     }
 
     private String getKey(String name, String surname) {
-        return name + " " + surname;
+        return  name + " " + surname;
     }
 
 
@@ -34,7 +34,7 @@ public class EmployeeService {
         if (EMPLOYEES.containsKey(employee.getFullName())) {
             throw new EmployeeAlreadyAddedException("Сотрудник уже есть в базе данных. Добавление невозможно");
         }
-        if (departmentName > 5 && departmentName < 0) {
+        if (departmentName > 5 || departmentName < 0) {
             throw new DepartmentIllegalNumber("Некоректный номер отдела. Добавление невозможно.");
         }
         if (EMPLOYEES.size() < LIMIT) {
@@ -46,7 +46,7 @@ public class EmployeeService {
 
     public Employee deleteEmployeeFio(String name, String surname) {
        // checkEmployee(name, surname);
-        String s = surname + " " + name;
+        String s = name + " " + surname;
         if (!EMPLOYEES.containsKey(s)) {
             throw new EmployeeNotFoundException();
         }

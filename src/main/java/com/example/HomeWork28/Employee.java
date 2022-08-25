@@ -1,11 +1,11 @@
 package com.example.HomeWork28;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.apache.commons.lang3.StringUtils;
+
 
 import java.util.Objects;
 
-import static org.apache.commons.lang3.StringUtils.*;
+
 
 public class Employee {
     @JsonProperty("lastName")
@@ -17,8 +17,10 @@ public class Employee {
     private final double salary;
 
     public Employee(String name, String surname, int departmentId, double salary) {
-        this.name = capitalize(name.toLowerCase());
-        this.surname = capitalize(surname.toLowerCase());
+        //this.name = capitalize(name.toLowerCase());
+       // this.surname = capitalize(surname.toLowerCase());
+        this.name = name;
+        this.surname = surname;
         this.departmentId = departmentId;
         this.salary = salary;
     }
@@ -40,7 +42,7 @@ public class Employee {
     }
 
     public String getFullName() {
-        return surname + " " + name;
+        return name + " " + surname;
     }
 
 

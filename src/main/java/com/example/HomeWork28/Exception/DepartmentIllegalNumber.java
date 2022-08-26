@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(value = HttpStatus.BAD_REQUEST, reason = "Некоректный номер отдела. Добавление невозможно.")
 public class DepartmentIllegalNumber extends RuntimeException{
-    public DepartmentIllegalNumber(String message) {
-        super(message);
-    }
+//  public DepartmentIllegalNumber(String message) {
+//        super(message);
+//    }
 }

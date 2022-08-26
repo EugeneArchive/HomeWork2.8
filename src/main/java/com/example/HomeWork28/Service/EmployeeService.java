@@ -31,11 +31,11 @@ public class EmployeeService {
         //checkEmployee(name, surname);
         Employee employee = validatorService.validateEmployee(name, surname,departmentName, salary);
         String key = getKey(employee.getName(), employee.getSurname());
+        if (departmentName > 5 || departmentName < 0) {
+            throw new DepartmentIllegalNumber();
+        }
         if (EMPLOYEES.containsKey(employee.getFullName())) {
             throw new EmployeeAlreadyAddedException("Сотрудник уже есть в базе данных. Добавление невозможно");
-        }
-        if (departmentName > 5 || departmentName < 0) {
-            throw new DepartmentIllegalNumber("Некоректный номер отдела. Добавление невозможно.");
         }
         if (EMPLOYEES.size() < LIMIT) {
             EMPLOYEES.put(key, employee);
@@ -71,9 +71,11 @@ public class EmployeeService {
         return new ArrayList<>(EMPLOYEES.values());
     }
 
-    private void checkEmployee(String name, String surname) {
-        if (!(isAlpha(name) && isAlpha(surname))) {
-            throw new BadRequest();
-        }
-    }
+
+// второй способ решения
+//    private void checkEmployee(String name, String surname) {
+//        if (!(isAlpha(name) && isAlpha(surname))) {
+//            throw new BadRequest();
+//        }
+//    }
 }

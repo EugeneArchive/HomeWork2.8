@@ -2,7 +2,11 @@ GET http://localhost:8080/employee/add?firstName=mikosf2i&lastName=mikes&departm
 ###
 GET http://localhost:8080/employee/add?firstName=mikis&lastName=mikess&departmentId=2&salary=1250
 ###
-GET http://localhost:8080/employee/add?firstName=mikf&lastName=mikf&departmentId=2&salary=122550
+GET http://localhost:8080/employee/add?firstName=Eugene&lastName=Serebrov&departmentId=10&salary=122550
+###
+GET http://localhost:8080/employee/find?firstName=Eugene&lastName=Serebrov
+###
+GET http://localhost:8080/employee/remove?firstName=Eugene&lastName=Serebrov
 ###
 GET http://localhost:8080/department/all?departmentId=2
 ###

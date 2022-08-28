@@ -30,16 +30,29 @@ public class DepartmentService {
         return employeeService.getAll().stream()
                 .filter(employee -> employee.getDepartmentName() == departmentId)
                 .max(Comparator.comparingDouble(Employee::getSalary))
-                .orElseThrow(EmployeeNotFoundException::new);
+                .orElseThrow(DepartmentIllegalNumber::new);
     }
+
     public Employee minSalary(int departmentId) {
         return employeeService.getAll().stream()
                 .filter(employee -> employee.getDepartmentName() == departmentId)
                 .min(Comparator.comparingDouble(Employee::getSalary))
-                .orElseThrow(EmployeeNotFoundException::new);
+                .orElseThrow(DepartmentIllegalNumber::new);
     }
 
-//    public Optional<Employee> minSalary(int departmentId) {
+    public List<Employee> departmentEmployees(int departmentId) {
+        return employeeService.getAll().stream()
+                .filter(e -> e.getDepartmentName() == departmentId)
+                .collect(Collectors.toList());
+
+    }
+
+    public Map<Integer, List<Employee>> printDepartmentEmployees() {
+        return employeeService.getAll().stream()
+                .collect(Collectors.groupingBy(Employee::getDepartmentName));
+
+    }
+    //    public Optional<Employee> minSalary(int departmentId) {
 //        Optional<Employee> employee = employeeService.printEmployee().values().stream()
 //                .filter(e -> e.getDepartmentName() == departmentId)
 //                .min(Comparator.comparingDouble(Employee::getSalary));
@@ -52,17 +65,6 @@ public class DepartmentService {
 //                .collect(Collectors.toList());
 //
 //    }
-    public List<Employee> departmentEmployees(int departmentId) {
-        return employeeService.getAll().stream()
-                .filter(e -> e.getDepartmentName() == departmentId)
-                .collect(Collectors.toList());
-
-    }
-    public Map<Integer, List<Employee>> printDepartmentEmployees() {
-        return employeeService.getAll().stream()
-                .collect(Collectors.groupingBy(Employee::getDepartmentName));
-
-    }
 
 //    public Map<Integer, List<Employee>> printAllDepartmentEmployee() {
 //        Map<Integer, String> collect = employeeService.printEmployee().values().stream()

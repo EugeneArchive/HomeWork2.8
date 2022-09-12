@@ -1,8 +1,8 @@
-package com.example.HomeWork28.Service;
+package com.example.HomeWork28.service;
 
 import com.example.HomeWork28.Employee;
-import com.example.HomeWork28.Exception.DepartmentIllegalNumber;
-import com.example.HomeWork28.Exception.EmployeeNotFoundException;
+import com.example.HomeWork28.exception.DepartmentIllegalNumber;
+import com.example.HomeWork28.exception.EmployeeNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -13,7 +13,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static com.example.HomeWork28.Service.EmployeeTestConstants.*;
+import static com.example.HomeWork28.service.EmployeeTestConstants.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
@@ -55,9 +55,9 @@ class DepartmentServiceTest {
     void shouldCallEmployWithMaxSalaryInDepartment() {
         when(employeeService.getAll()).thenReturn(EMPLOYEES1);
 
-        Employee expected = out.maxSalary(FIRST_DEPARTMENT);
+        Employee actual = out.maxSalary(FIRST_DEPARTMENT);
 
-        Employee actual = EMPLOYEES2.stream()
+        Employee expected = EMPLOYEES2.stream()
                 .filter(employee -> employee.getDepartmentName() == FIRST_DEPARTMENT)
                 .min(Comparator.comparingDouble(Employee::getSalary))
                 .orElseThrow(EmployeeNotFoundException::new);
@@ -69,9 +69,9 @@ class DepartmentServiceTest {
     void shouldCallEmployWithMinSalaryInDepartment() {
         when(employeeService.getAll()).thenReturn(EMPLOYEES1);
 
-        Employee expected = out.minSalary(FIRST_DEPARTMENT);
+        Employee actual = out.minSalary(FIRST_DEPARTMENT);
 
-        Employee actual = EMPLOYEES2.stream()
+        Employee expected = EMPLOYEES2.stream()
                 .filter(employee -> employee.getDepartmentName() == FIRST_DEPARTMENT)
                 .min(Comparator.comparingDouble(Employee::getSalary))
                 .orElseThrow(EmployeeNotFoundException::new);
@@ -83,9 +83,9 @@ class DepartmentServiceTest {
     public void shouldCallDepartmentServiceWhenPrintAllDepartmentEmployee() {
         when(employeeService.getAll()).thenReturn(EMPLOYEES1);
 
-        Map<Integer, List<Employee>> expected = out.printDepartmentEmployees();
+        Map<Integer, List<Employee>> actual = out.printDepartmentEmployees();
 
-        Map<Integer, List<Employee>> actual = EMPLOYEES3.values().stream()
+        Map<Integer, List<Employee>> expected = EMPLOYEES3.values().stream()
                 .collect(Collectors.groupingBy(Employee::getDepartmentName));
 
         assertEquals(expected, actual);
@@ -95,9 +95,9 @@ class DepartmentServiceTest {
     public void shouldCallDepartmentServiceWhenPrintDepartmentEmployee() {
         when(employeeService.getAll()).thenReturn(EMPLOYEES1);
 
-        List<Employee> expected = out.departmentEmployees(SECOND_DEPARTMENT);
+        List<Employee> actual = out.departmentEmployees(SECOND_DEPARTMENT);
 
-        List<Employee> actual = EMPLOYEES2.stream()
+        List<Employee> expected = EMPLOYEES2.stream()
                 .filter(e -> e.getDepartmentName() == SECOND_DEPARTMENT).toList();
 
         assertEquals(expected, actual);

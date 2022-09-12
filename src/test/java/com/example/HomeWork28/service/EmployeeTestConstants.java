@@ -1,4 +1,4 @@
-package com.example.HomeWork28.Service;
+package com.example.HomeWork28.service;
 
 
 import com.example.HomeWork28.Employee;

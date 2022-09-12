@@ -1,7 +1,7 @@
-package com.example.HomeWork28.Controller;
+package com.example.HomeWork28.сontroller;
 
 import com.example.HomeWork28.Employee;
-import com.example.HomeWork28.Service.DepartmentService;
+import com.example.HomeWork28.service.DepartmentService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;

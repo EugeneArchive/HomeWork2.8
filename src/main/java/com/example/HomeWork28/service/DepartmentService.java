@@ -1,14 +1,12 @@
-package com.example.HomeWork28.Service;
+package com.example.HomeWork28.service;
 
 import com.example.HomeWork28.Employee;
-import com.example.HomeWork28.Exception.DepartmentIllegalNumber;
-import com.example.HomeWork28.Exception.EmployeeNotFoundException;
+import com.example.HomeWork28.exception.DepartmentIllegalNumber;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service

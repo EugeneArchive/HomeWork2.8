@@ -1,8 +1,8 @@
-package com.example.HomeWork28.Service;
+package com.example.HomeWork28.service;
 
 
 import com.example.HomeWork28.Employee;
-import com.example.HomeWork28.Exception.*;
+import com.example.HomeWork28.exception.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -13,7 +13,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.HomeWork28.Service.EmployeeTestConstants.*;
+import static com.example.HomeWork28.service.EmployeeTestConstants.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
@@ -37,8 +37,8 @@ public class EmployeeServiceTests {
 
     @Test
     public void shouldCallEmployeeServiceWhenPrintEmployee() {
-        List<Employee> expected = out.getAll();
-        List<Employee> actual = new ArrayList<>();
+        List<Employee> actual = out.getAll();
+        List<Employee> expected = new ArrayList<>();
         actual.add(employee);
         assertEquals(expected, actual);
     }
@@ -47,22 +47,22 @@ public class EmployeeServiceTests {
     public void shouldCallEmployeeServiceWhenAddEmployee() {
         Employee employee2 = new Employee("Pavel", "Tichonov", 2, 100_000);
         when(validatorService.validateEmployee(anyString(), anyString(), anyInt(), anyDouble())).thenReturn(employee2);
-        Employee result = out.addEmployee(SECOND_NAME, SECOND_SURNAME, SECOND_DEPARTMENT, SALARY);
-        assertEquals(employee2, result);
+        Employee actual = out.addEmployee(SECOND_NAME, SECOND_SURNAME, SECOND_DEPARTMENT, SALARY);
+        assertEquals(employee2, actual);
 
     }
 
     @Test
     public void shouldCallEmployeeServiceWhenFindEmployee() {
-        Employee result = out.findEmployee(FIRST_NAME, FIRST_SURNAME);
-        assertEquals(employee, result);
+        Employee actual = out.findEmployee(FIRST_NAME, FIRST_SURNAME);
+        assertEquals(employee, actual);
 
     }
 
     @Test
     public void shouldCallEmployeeServiceWhenRemoveEmployee() {
-        Employee result = out.deleteEmployeeFio(FIRST_NAME, FIRST_SURNAME);
-        assertEquals(employee, result);
+        Employee actual = out.deleteEmployeeFio(FIRST_NAME, FIRST_SURNAME);
+        assertEquals(employee, actual);
 
     }
 

@@ -1,8 +1,8 @@
-package com.example.HomeWork28.Service;
+package com.example.HomeWork28.service;
 
 import com.example.HomeWork28.Employee;
-import com.example.HomeWork28.Exception.InvalidNameException;
-import com.example.HomeWork28.Exception.InvalidSurnameException;
+import com.example.HomeWork28.exception.InvalidNameException;
+import com.example.HomeWork28.exception.InvalidSurnameException;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
